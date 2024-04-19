@@ -6,6 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 from .serializers import TodoSerializer
 
+
 def index(request):
     item_list = Todo.objects.order_by('-date')
     if request.method == 'POST':
@@ -22,6 +23,7 @@ def index(request):
     }
     return render(request, 'djaz/i.html', page)
 
+
 def remove(request, item_id):
     item = Todo.objects.get(id=item_id)
     item.delete()
@@ -32,7 +34,7 @@ def remove(request, item_id):
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
-    filterset_fields = ['title']
-    search_fields = ['title']
-    ordering_fields = '__all__'
+    # filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    # filterset_fields = ['title']
+    # search_fields = ['title']
+    # ordering_fields = '__all__'
